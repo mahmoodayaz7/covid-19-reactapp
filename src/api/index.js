@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const url = "https://covid19.mathdro.id/api";
 
