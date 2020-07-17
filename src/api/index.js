@@ -1,6 +1,10 @@
 import axios from "axios";
+import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
 
 const url = "https://covid19.mathdro.id/api";
+
+//const BASE_URL = "https://covid19.mathdro.id/api";
+const BASE_URL_2nd = "https://api.covid19api.com";
 
 export const fetchData = async (country) => {
   let changeableUrl = url;
@@ -51,6 +55,30 @@ export const fetchCountries = async () => {
     console.log(err);
   }
 };
+
+//Global-Summary
+/*export const fetchGlobalSummaryData = async () => {
+  try {
+    const { data } = await axios.get(`${BASE_URL_2nd}/summary`);
+    return data;
+    //console.log(data);
+  } catch (err) {
+    return err.data;
+  }
+};*/
+
+//Global-Summary
+export const fetchGlobalSummaryData = createAsyncThunk(
+  "global-summary/fetchGlobalSummaryData",
+  async (thunkAPI) => {
+    try {
+      const response = await axios.get(`${BASE_URL_2nd}/summary`);
+      return response.data;
+    } catch (error) {
+      return error.data;
+    }
+  }
+);
 
 /*
     
